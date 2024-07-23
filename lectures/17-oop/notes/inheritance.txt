@@ -104,6 +104,25 @@ eliminating the costly overhead associated with a method call. Inlining is an op
 Normally, Java resolves calls to methods dynamically, at run time. This is called late binding. However, since final
 methods cannot be overridden, a call to one can be resolved at compile time. This is called early binding.
 
+Final Methods and Performance Enhancements
+Final Methods
+In Java, a method declared as final cannot be overridden by subclasses. This immutability allows the compiler to make certain optimizations.
+Performance Enhancement through Inlining
+Inlining:
+When a method is declared as final, the compiler knows that the method will not change through inheritance. Therefore, the compiler can perform a process called inlining.
+Inlining: The compiler copies the bytecode of the final method directly into the caller's code. This reduces the overhead associated with method calls, such as pushing and popping stack frames.
+Costly Overhead:
+Normal method calls involve additional steps: storing the return address, parameter passing, and managing the call stack. These steps are collectively known as method call overhead.
+
+Early Binding vs. Late Binding
+Late Binding (Dynamic Method Resolution):
+Normally, Java resolves method calls at runtime. This is because methods can be overridden, and the actual method to be called is determined based on the runtime type of the object.
+Example: If B is a subclass of A, and B overrides a method in A, the method to be executed is determined at runtime based on whether the object is of type A or B.
+Early Binding (Static Method Resolution):
+
+For final methods, since they cannot be overridden, the compiler can resolve the method calls at compile time. This is known as early binding.
+Benefit: Early binding allows the compiler to know exactly which method to call, leading to potential performance optimizations like inlining.
+
 # Using final to Prevent Inheritance:
 Sometimes you will want to prevent a class from being inherited. To do this, precede the class declaration with final.
 NOTE: Declaring a class as final implicitly declares all of its methods as final, too.
